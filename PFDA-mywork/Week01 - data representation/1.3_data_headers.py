@@ -1,4 +1,4 @@
-'''Modify 1.2data.py to deal with the header line seperately'''
+'''Modify 1.2data.py to deal with the header line separately'''
 # Author: Irene Kilgannon
 
 import csv
@@ -16,6 +16,7 @@ with open(DATA_DIR + FILE_NAME, 'rt') as csv_file:
         else:
             print(line)
         linecount += 1
+        
 
 # To remove the header the following works
 #with open(Data_dir + File_name, 'rt') as csv_file:
