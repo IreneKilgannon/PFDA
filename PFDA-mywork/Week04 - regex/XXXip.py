@@ -7,5 +7,6 @@ import re
 with open('access.log') as inputFile:
     with open('anon_ip.txt', 'w') as outputFile:
         for line in inputFile:
-            anon_ip = re.sub(r"\d{1,3}\.\d{1,3} ", 'XXX.XXX ', line)
+            anon_ip = re.sub(r"(\d{1,3}\.\d{1,3}\.)\d{1,3}\.\d{1,3} ", "\\1XXX.XXX ", line)
             outputFile.write(anon_ip)
+

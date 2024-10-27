@@ -3,13 +3,12 @@
 import re 
  
 regex = "wwww\.\.+\.com"
-filename = 'access.log'
- 
-with open(filename) as inputFile: 
-    for line in inputFile: 
-        foundTextList = re.findall(regex, line)
-        print(foundTextList)
-        #if (len(foundTextList)!= 0): 
+
+with open('access.log') as inputFile:
+    for line in inputFile:
+        print(re.findall(r'\[.+\]', line))
+
+        #if     (len(foundTextList)!= 0): 
         #    print(foundTextList) 
             #foundText = foundTextList[0] 
             #print(foundText) 
