@@ -27,22 +27,19 @@ import matplotlib.pyplot as plt
 
 # Create the dice
 dice_roll = np.random.randint(1, 7)
-#print(dice_roll)
 
 # Attacker
-
 # Create an empty list to store the attacker dice rolls
 attacker = []
 
 # Roll 3 dice
-attacker.append(dice_roll)
-dice_roll = np.random.randint(1, 7)
-attacker.append(dice_roll)
-dice_roll = np.random.randint(1, 7)
-attacker.append(dice_roll)
 
-# Sort attacker list in descending order
-attacker.sort(reverse = True)
+attacker = []
+
+while len(attacker) < 3:
+    dice_roll = np.random.randint(1,7)
+    attacker.append(dice_roll)
+    attacker.sort(reverse = True)
 
 # Print attacker list
 print(f'The attacker rolled: {attacker}')
@@ -50,54 +47,38 @@ print(f'The attacker rolled: {attacker}')
 # remove index 2
 attacker.pop()
 
-print(attacker)
-
 # Defender
 
 defender = []
 
 # Roll 2 dice for the defender
-defender.append(dice_roll)
-dice_roll = np.random.randint(1, 7)
-defender.append(dice_roll)
-dice_roll = np.random.randint(1, 7)
-
-# Sort defender list
-defender.sort(reverse = True)
+while len(defender) < 2:
+    dice_roll = np.random.randint(1, 7)
+    defender.append(dice_roll)
+    defender.sort(reverse = True)
 
 print(f'The defender rolled: {defender}')
 
-# Error - battle results no
 # Battle - compare items in attacker and defender list
 
-attack_wins = 0
-defender_wins = 0
+no_attacker_wins = 0
+no_defender_wins = 0
 
-if attacker[0] <= defender[0]:
-    defender_wins = defender_wins + 1
-else:
-    attack_wins = attack_wins + 1
-#
-#print(f'attacker wins: {attack_wins} ')
-#print(f'defender wins: {defender_wins}')
-#
-if attacker[1] <= defender[1]:
-        defender_wins = defender_wins + 1
-else:
-    attack_wins = attack_wins + 1
+for a, d in zip(attacker, defender):
+    if  a <= d:
+        no_defender_wins = no_defender_wins + 1
+    else:
+        no_attacker_wins = no_attacker_wins + 1
 
-
-print(f'attacker wins: {attack_wins} ')
-print(f'defender wins: {defender_wins}')
+print(f'Attacker wins: {no_attacker_wins} ')
+print(f'Defender wins: {no_defender_wins}')
 
 
 # Overall winner
 
-if attack_wins > defender_wins:
+if no_attacker_wins > no_defender_wins:
     print('Attacker is the winnner')
-elif attack_wins < defender_wins:
+elif no_attacker_wins < no_defender_wins:
     print('Defender is the winner')
 else:
     print('The battle was a draw')
-
-# Error
