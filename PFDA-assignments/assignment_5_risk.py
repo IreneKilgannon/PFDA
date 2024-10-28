@@ -24,6 +24,10 @@ import matplotlib.pyplot as plt
 
 # Next task is to simulate 1000 rounds
 
+overall_score_attacker = 0
+overall_score_defender = 0
+drawn_matches = 0
+
 round = 1
 
 while round <=1000 :
@@ -67,17 +71,29 @@ while round <=1000 :
 
     print(f'Attacker wins: {no_attacker_wins}')
     print(f'Defender wins: {no_defender_wins}')
-
-
+          
     # Winner of the battle round
     if no_attacker_wins > no_defender_wins:
         print(f'Attacker is the winnner of round {round}')
+        overall_score_attacker += 1
     elif no_attacker_wins < no_defender_wins:
         print(f'Defender is the winner round {round}')
+        overall_score_defender += 1
     else:
         print('The battle was a draw')
+        drawn_matches += 1
 
     round += 1
 
 # Add in overall winner, keep running total of the no of attacker wins and no of defender wins
-# Create a plot: pie? histogram?
+
+    print(f'The attacker won {overall_score_attacker} battles')
+    print(f'The defender won {overall_score_defender} battles')
+    print(f'{drawn_matches} were a draw')
+
+    if overall_score_attacker > overall_score_defender:
+        print('The attacker won the battle')
+    else:
+        print('The defender won the battle')
+        
+# Create a plot: pie? bar?
