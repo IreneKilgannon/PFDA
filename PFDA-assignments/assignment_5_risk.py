@@ -74,9 +74,9 @@ else:
     print(f'The defender won the battle.\n Attackers score: {overall_score_attacker}\n Defenders score: {overall_score_defender}\n Drawn matches: {drawn_matches}')
 
 
-result = [overall_score_attacker, overall_score_defender, drawn_matches]
+y = np.array([overall_score_attacker, overall_score_defender, drawn_matches])
+x = np.array(['Attacker', 'Defender', 'Draw'])
 
-labels = ['attacker', 'defender', 'draws']
-plt.pie(result, labels= labels)
+plt.bar(x, y)
 plt.title('Winner of Risk Game')
 plt.show()
