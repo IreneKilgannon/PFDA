@@ -22,8 +22,6 @@ import numpy as np
 import random
 import matplotlib.pyplot as plt
 
-# Next task is to simulate 1000 rounds
-
 overall_score_attacker = 0
 overall_score_defender = 0
 drawn_matches = 0
@@ -31,35 +29,27 @@ drawn_matches = 0
 round = 1
 
 while round <=1000 :
-    print(f'This is round: {round}')
     # Attacker Dice Rolls
-
     # Create an empty list to store the dice rolls
     attacker = []
 
     while len(attacker) < 3:
-        # Roll 3 dice, append the result to attacker list
+        # Roll 3 dice, append the result to attacker list, sort list in descending order
         dice_roll = np.random.randint(1,7)
         attacker.append(dice_roll)
         attacker.sort(reverse = True)
-
-    # Print attacker list
-    print(f'The attacker rolled: {attacker}')
 
     # Defender Dice Rolls
     defender = []
 
     # Roll 2 dice for the defender
     while len(defender) < 2:
-        # Roll 2 dice, append the result to the defender list
+        # Roll 2 dice, append the result to the defender list, sort list in descending order
         dice_roll = np.random.randint(1, 7)
         defender.append(dice_roll)
         defender.sort(reverse = True)
 
-    print(f'The defender rolled: {defender}')
-
     # Battle - compare items in attacker and defender list
-
     no_attacker_wins = 0
     no_defender_wins = 0
 
@@ -69,32 +59,24 @@ while round <=1000 :
         else:
             no_attacker_wins += 1
 
-    print(f'Attacker wins: {no_attacker_wins}')
-    print(f'Defender wins: {no_defender_wins}')
-          
-    # Winner of the battle round
     if no_attacker_wins > no_defender_wins:
-        print(f'Attacker is the winnner of round {round}')
         overall_score_attacker += 1
     elif no_attacker_wins < no_defender_wins:
-        print(f'Defender is the winner round {round}')
         overall_score_defender += 1
     else:
-        print('The battle was a draw')
         drawn_matches += 1
 
     round += 1
 
-# Add in overall winner, keep running total of the no of attacker wins and no of defender wins
+if overall_score_attacker > overall_score_defender:
+    print(f'The attacker won the battle.\n Attackers score: {overall_score_attacker}\n Defenders score: {overall_score_defender}\n Drawn matches: {drawn_matches}')
+else:
+    print(f'The defender won the battle.\n Attackers score: {overall_score_attacker}\n Defenders score: {overall_score_defender}\n Drawn matches: {drawn_matches}')
 
-    print(f'The attacker won {overall_score_attacker} battles')
-    print(f'The defender won {overall_score_defender} battles')
-    print(f'{drawn_matches} were a draw')
 
-    if overall_score_attacker > overall_score_defender:
-        print('The attacker won the battle')
-    else:
-        print('The defender won the battle')
-        
-# Create a plot: pie? bar?
+result = [overall_score_attacker, overall_score_defender, drawn_matches]
 
+labels = ['attacker', 'defender', 'draws']
+plt.pie(result, labels= labels)
+plt.title('Winner of Risk Game')
+plt.show()
