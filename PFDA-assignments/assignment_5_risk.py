@@ -80,3 +80,16 @@ x = np.array(['Attacker', 'Defender', 'Draw'])
 plt.bar(x, y)
 plt.title('Winner of Risk Game')
 plt.show()
+
+
+# Improvements
+
+# print/display 1 round of the game to show code working
+# show game progress, who's winning? 
+
+# For the more marks, ideas
+# For extra marks: a more complicated version that simulates a full series of rounds for armies of arbitary sizes, until one side is wiped out.
+# any no of armies? Ask player how many armies they would like, or computer decide how many to play with. 
+# start with x no of armies for attacker, y for defender.
+# need functions, class
+# Player A vs Player B alternating turns.
