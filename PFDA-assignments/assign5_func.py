@@ -3,13 +3,32 @@ import numpy as np
 import random
 import matplotlib.pyplot as plt
 
+class Risk():
+    def __init__(self, dice, attacker, defender, battle):
+        self.dice = dice
+        self.attacker = attacker
+        self.defender = defender
+        self.battle = battle
+
+    def dice(self):
+        self.dice = np.random.randint(1,7)
+
+
+    def attacker(self, attacker_dice, score):
+        pass
+
+    def defender():
+        pass
+
+    def battle():
+
 attacker_score = 0
 defender_score = 0
 draw = 0
+def roll():
+
 
 def attacker_rolls():
-    global attacker
-    global size_attacker_army
     '''A function to generate 3 random numbers between 1 and 6 to simulate 3 rolls of a dice for the attacker'''
     attacker = []
     

@@ -22,15 +22,15 @@ import numpy as np
 import random
 import matplotlib.pyplot as plt
 
+# Create a counter for the overall score
 overall_score_attacker = 0
 overall_score_defender = 0
 drawn_matches = 0
 
 round = 1
 
-while round <=1000 :
-    # Attacker Dice Rolls
-    # Create an empty list to store the dice rolls
+while round <= 1000:
+    # Create an empty list to store the attacker dice rolls
     attacker = []
 
     while len(attacker) < 3:
@@ -39,29 +39,32 @@ while round <=1000 :
         attacker.append(dice_roll)
         attacker.sort(reverse = True)
 
-    # Defender Dice Rolls
+    # Create empty list for defender dice rolls
     defender = []
 
-    # Roll 2 dice for the defender
     while len(defender) < 2:
         # Roll 2 dice, append the result to the defender list, sort list in descending order
         dice_roll = np.random.randint(1, 7)
         defender.append(dice_roll)
         defender.sort(reverse = True)
 
-    # Battle - compare items in attacker and defender list
-    no_attacker_wins = 0
-    no_defender_wins = 0
+    # Single Battle - compare items in attacker and defender list
 
+    # Keeping the score for a single battle
+    number_attacker_wins = 0
+    number_defender_wins = 0
+
+    # zip the attacker and defender lists together so the values in the created tuple can be compared
     for a, d in zip(attacker, defender):
         if  a <= d:
-            no_defender_wins += 1
+            number_defender_wins += 1
         else:
-            no_attacker_wins += 1
+            number_attacker_wins += 1
 
-    if no_attacker_wins > no_defender_wins:
+    # the winner of the single battle to the overall score list
+    if number_attacker_wins > number_defender_wins:
         overall_score_attacker += 1
-    elif no_attacker_wins < no_defender_wins:
+    elif number_attacker_wins < number_defender_wins:
         overall_score_defender += 1
     else:
         drawn_matches += 1
