@@ -24,67 +24,53 @@ import numpy as np
 import random
 import matplotlib.pyplot as plt
 #
-#def roll_dice(num_dice):
-#    """A function to simulate the rolling of any number of dice and create a list, sorted in descending order of the results of the dice rolls.
-#    Argument: num_dice. The number of dice to roll
-#    """
-#    roll_results = []
-#    for _ in range(num_dice):
-#        roll = random.randint(1, 6)
-#        roll_results.append(roll)
-#        roll_results.sort(reverse= True)
-#    return roll_results
-#
-## Create a counter for the overall score
-#overall_score_attacker = 0
-#overall_score_defender = 0
-#drawn_matches = 0
-#
-#round = 1
-#
-#while round <= 1000:
-#    # Roll the attacker dice
-#    attacker_dice = roll_dice(3)
-#
-#    # Roll the defender dice
-#    defender_dice = roll_dice(2)
-#
-#    # Single Battle - compare items in attacker and defender list
-#    # Keeping the score for a single battle
-#    attacker_wins = 0
-#    defender_wins = 0
-#
-#    # zip the attacker and defender lists together so the values in the created tuple can be compared
-#    for a, d in zip(attacker_dice, defender_dice):
-#        if  a <= d:
-#            defender_wins += 1
-#        else:
-#            attacker_wins += 1
-#    print(attacker_wins, defender_wins)
-#    
-#    # add the winner of the single battle to the overall score list
-#    if attacker_wins > defender_wins:
-#        overall_score_attacker += 1
-#    elif attacker_wins < defender_wins:
-#        overall_score_defender += 1
-#    else:
-#        drawn_matches += 1
-#
-#    round += 1
-##
-##if overall_score_attacker > overall_score_defender:
-##    print(f'The attacker won the battle.\n Attackers score: {overall_score_attacker}\n Defenders score: {overall_score_defender}\n Drawn matches: {drawn_matches}')
-##else:
-##    print(f'The defender won the battle.\n Attackers score: {overall_score_attacker}\n Defenders score: {overall_score_defender}\n Drawn matches: {drawn_matches}')
-##
-##
-##y = np.array([overall_score_attacker, overall_score_defender, drawn_matches])
-##x = np.array(['Attacker', 'Defender', 'Draw'])
-##
-##plt.bar(x, y)
-##plt.title('Winner of Risk Game')
-##plt.show()
-#
+def roll_dice(num_dice):
+    """A function to simulate the rolling of any number of dice and create a list, sorted in descending order of the results of the dice rolls.
+    Argument: num_dice. The number of dice to roll
+    """
+    roll_results = []
+    for _ in range(num_dice):
+        roll = random.randint(1, 6)
+        roll_results.append(roll)
+        roll_results.sort(reverse= True)
+    return roll_results
+
+# Create a counter for the overall score
+attacker_losses = 0
+defender_losses = 0
+
+round = 1
+
+while round <= 1000:
+    # Roll the attacker dice
+    attacker_dice = roll_dice(3)
+
+    # Roll the defender dice
+    defender_dice = roll_dice(2)
+
+ 
+    # zip the attacker and defender lists together so the values in the created tuple can be compared
+    for a, d in zip(attacker_dice, defender_dice):
+        if  a <= d:
+            attacker_losses += 1
+        else:
+            defender_losses += 1
+
+    round += 1
+
+if attacker_losses > defender_losses:
+    print(f'The attacker lost the battle.\n Attackers Losses score: {attacker_losses}\n Defenders Losses: {defender_losses}')
+else:
+    print(f'The defender lost the battle.\n Attackers Losses: {attacker_losses}\n Defenders Losses: {defender_losses}')
+
+
+y = np.array([attacker_losses, defender_losses])
+x = np.array(['Attacker Losses', 'Defender Losses'])
+
+plt.bar(x, y)
+plt.title('Risk Game')
+plt.show()
+
 
 # Improvements
 
@@ -101,6 +87,10 @@ import matplotlib.pyplot as plt
 
 #Starting again
 
+# Plan 
+# generate all the numbers at the start.
+# compare the items in the array. Need to drop last item in attacker_dice? Can I zip arrays?
+# 
 
 attacker_dice = np.random.randint(1, 7, size =(1000, 3))
 attacker_dice = -np.sort(-attacker_dice)
@@ -117,14 +107,5 @@ print(defender_dice)
 #sorted = -np.sort(-testing)
 # https://stackoverflow.com/questions/26984414/efficiently-sorting-a-numpy-array-in-descending-order
 
-# or 
-#print(testing)
-#
-#print('\n')
-#print(sorted)
-#
-#x= testing.sort(reverse=True)
-#print(x)
-
-#print(sorted_testing)
+# Compare items in both arrays
 
