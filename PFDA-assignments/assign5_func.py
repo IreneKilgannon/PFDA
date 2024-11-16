@@ -3,71 +3,89 @@ import numpy as np
 import random
 import matplotlib.pyplot as plt
 
-class Risk():
-    def __init__(self, dice, attacker, defender, battle):
-        self.dice = dice
-        self.attacker = attacker
-        self.defender = defender
-        self.battle = battle
-
-    def dice(self):
-        self.dice = np.random.randint(1,7)
-
-
-    def attacker(self, attacker_dice, score):
-        pass
-
-    def defender():
-        pass
-
-    def battle():
-
 attacker_score = 0
 defender_score = 0
 draw = 0
-def roll():
 
+#class Risk():
+#    def __init__(self, dice, attacker, defender, battle):
+#        self.dice = dice
+#        self.attacker = attacker
+#        self.defender = defender
+#        self.battle = battle
+#
+#    def dice():
+#        dice_roll = np.random.randint(1,7)
+#        return dice_roll
+#
+#    def score():
+#       
+#
+#    def attacker(self, attacker_dice, score):
+##        pass
 
-def attacker_rolls():
-    '''A function to generate 3 random numbers between 1 and 6 to simulate 3 rolls of a dice for the attacker'''
-    attacker = []
+def roll_dice(num_dice):
+    """Return a list of integers with length `num_dice`.
+
+    Each integer in the returned list is a random number between
+    1 and 6, inclusive.
+    """
+    roll_results = []
+    for _ in range(num_dice):
+        roll = random.randint(1, 6)
+        roll_results.append(roll)
+        roll_results.sort(reverse= True)
+    return roll_results
+
+def battle(num_rounds): 
+    ''' '''
+    attacker_wins = 0
+    defender_win = 0
+
+    for round in range(num_rounds):
+        attacker = roll_dice(3)
+        print(f'The attacker rolled {attacker}')
+        defender = roll_dice(2)
+        print(f'The defender rolled {defender}')
+        for attacker, defender in zip(attacker, defender):
+            if  attacker <= defender:
+                score_counts[0] += 1
+            else:
+                score_counts[1] += 1
     
-    # ask user how many armies they would like
-    size_attacker_army = int(input('Attacker: How many armies would you like? '))
-    while len(attacker) < size_attacker_army:
-        # Roll 3 dice, append the result to attacker list
-        dice_roll = np.random.randint(1,7)
-        attacker.append(dice_roll)
-        attacker.sort(reverse = True)
-    return attacker
+    return score_counts
+
+print(battle(10))
 
 
 
-def defender_rolls():
-    global defender
-    '''A function to generate 2 random numbers between 1 and 6 to simulate 2 rolls of a dice for the defender'''
-    
-    defender = []
-
-    size_defender_army = int(input('Defender: How many armies would you like? '))
-
-    if size_defender_army >= size_attacker_army:
-        print('Attacker army must be larger than defending army.')
-        size_defender_army = int(input('Defender: How many armies would you like? '))
-
-    # Roll 2 dice for the defender
-    while len(defender) < size_defender_army:
-        # Roll 2 dice, append the result to the defender list
-        dice_roll = np.random.randint(1, 7)
-        defender.append(dice_roll)
-        defender.sort(reverse = True)
-    return defender
-
-print(attacker_rolls())
-print(defender_rolls())
-
+#score_counts = get_stats(1000)
+#attacker_wins = score_counts[1] + 2 * score_counts[2]
+#defender_wins = score_counts[1] + 2 * score_counts[0]
+#average_score = attacker_wins/sum(score_counts)
+#print(score_counts)
+#print(attacker_wins)
+#print(defender_wins)
+# the winner of the single battle to the overall score list
 #def battle():
-#    '''A function to compare the results of the attacker and defender functions.
+#    round_winner = {'no_attacker_wins': 0, 'no_defender_wins': 0}
+#    for a, d in zip(attacker(), defender()):
+#        if  a <= d:
+#            round_winner['no_defender_wins'] += 1
+#        else:
+#            round_winner['no_attacker_wins'] += 1
+#    return round_winner
+#
+#print(battle())
+#
+#
+#
+#
+#
+#
+#
+##def battle():
+##    '''A function to compare the results of the attacker and defender functions.
 #Describe '''
 #    
 #    # Single battle round - compare items in attacker and defender list
