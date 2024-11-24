@@ -22,6 +22,7 @@ import numpy as np
 import random
 import matplotlib.pyplot as plt
 import pandas as pd
+import seaborn as sns
 
  
 def roll_dice(num_dice):
@@ -91,13 +92,29 @@ def plot_results(attacker_losses, defender_losses):
     plt.show()
 
 
-
 attacker_losses, defender_losses, round_scores = simulate_battle(1000)
 
 
 #display_results( attacker_losses, defender_losses)
 plot_results(attacker_losses, defender_losses)
 
+
+# convert dictionary to a dataframe, use this for plotting data?
+# would like to add the values of the dice rolls to this too.
+
+round_scores = pd.DataFrame(round_scores)
+print(round_scores.head())
+
+
+# what i want to do is do a frequency of the round wins.
+y = np.array(round_scores['attacker_losses'].value_counts())
+
+x = np.array(['attacker 0\n defender 2', 'attacker 1\n defender 1', 'attacker 2\n defender 0'])
+
+plt.bar(x, y)
+plt.show()
+
+print(round_scores['attacker_losses'].value_counts())
 
 ## For the more marks, ideas
 ## For extra marks: a more complicated version that simulates a full series of rounds for armies of arbitrary sizes, until one side is wiped out.
