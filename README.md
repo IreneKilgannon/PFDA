@@ -40,14 +40,58 @@ Five assignments were set. These assignments were:
 - assignment_6_Weather.ipynb
     - Using the data from this link, https://cli.fusio.net/cli/climate_data/webdata/hly4935.csv
     - Plot:
-        The temperature
-        The mean temperature each day
-        The mean temperature for each month
-        The Wind speed
-        The rolling windspeed (say over 24 hours)
-        The max windspeed for each day
-        The monthly mean of the daily max wind speeds
+        * The temperature
+        * The mean temperature each day
+        * The mean temperature for each month
+        * The Wind speed
+        * The rolling windspeed (say over 24 hours)
+        * The max windspeed for each day
+        * The monthly mean of the daily max wind speeds
 
 ## PFDA-project
 
 The project directory will contain a large project.
+
+## Installation
+
+To run the file on your local system, the following must be downloaded and installed.
+
+1. Download and install [Anaconda](https://www.anaconda.com/download). Anaconda is a Python distribution and comes with pre-installed packages. Please note that when installing Anaconda it is important to check the two boxes for:
+  * Add Anaconda3 to my PATH environment variable.
+  * Register Anaconda3 as my default.
+  
+![Anaconda](https://github.com/IreneKilgannon/pands-project/blob/main/images/Anaconda.png)
+
+2. Download and install [Visual Studio Code](https://code.visualstudio.com/).
+
+3. Download and install [git](https://git-scm.com/downloads).
+
+4. Install [Cmder](https://cmder.app/)
+
+5. Create a [GitHub account](https://github.com). 
+
+## Usage
+
+With Cmder (or the terminal of Visual Studio Code) enter the following to clone the repository from GitHub onto your own machine:
+  
+    ``git clone https://github.com/IreneKilgannon/PFDA.git``
+
+Used codespaces as my machine struggled with the large files of the project. 
+
+[GitHub Codespaces](https://github.com/features/codespaces) uses Visual Studio Code in a Linux environment, the command line (terminal) of Visual Studio Code is used to run the commands for the tasks and project. 
+
+* In your GitHub account, create a GitHub repository. GitHub have a short guide on how to [create a new repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/quickstart-for-repositories)
+
+When you are finished working in the codespaces, it is important to disconnect the codespace as it will continue running until it times out due to inactivity. Charges could be incurred unless it is disconnected. Closing the browser tab does not stop the codespace.
+
+[Quickstart for GitHub codespaces](https://docs.github.com/en/codespaces/getting-started/quickstart)
+
+## Dependencies
+
+Currently there are no special packages or libraries required. Any dependencies will be added to ``requirements.txt`` that is found in the root of the repository.
+
+## Get Help
+
+If you have any questions or queries you can contact me at g00220627@atu.ie or alternatively [submit an issue](https://github.com/IreneKilgannon/computer_infrastructure/issues).
+
+## About the 
