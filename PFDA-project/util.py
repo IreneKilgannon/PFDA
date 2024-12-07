@@ -21,3 +21,8 @@ def extract_location(file_name):
         return match[0].lower()
     else:
         raise ValueError('File name does not match the expected pattern')
+    
+
+def select_years(df):
+    df = df['2014': '2024']
+    return df
