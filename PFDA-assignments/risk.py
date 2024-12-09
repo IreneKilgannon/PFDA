@@ -48,8 +48,8 @@ def simulate_battle(num_rounds):
         num_rounds (int): The number of battle rounds to simulate.'''
 
     # Lists to keep track of the overall losses.
-    attacker_losses = 0
-    defender_losses = 0
+    total_attacker_losses = 0
+    total_defender_losses = 0
 
     # A list of a dictionary to keep track of the round number, dice rolls and the score for each round.
     round_scores = []
@@ -68,8 +68,8 @@ def simulate_battle(num_rounds):
 
         # Add the values of the round attacker losses to attacker loses.
         # To keep track of the overall losses
-        attacker_losses += round_attacker_losses
-        defender_losses += round_defender_losses
+        total_attacker_losses += round_attacker_losses
+        total_defender_losses += round_defender_losses
         
     	# Append the round scores to 
         round_scores.append({
@@ -79,10 +79,10 @@ def simulate_battle(num_rounds):
             'round_attacker_losses': round_attacker_losses,
             'round_defender_losses': round_defender_losses})
 
-    return attacker_dice, defender_dice, attacker_losses, defender_losses, round_scores
+    return attacker_dice, defender_dice, total_attacker_losses, total_defender_losses, round_scores
 
 
-def plot_results(attacker_losses, defender_losses):
+def plot_results(total_attacker_losses, total_defender_losses):
     '''A function to create a bar plot of the total number of losses for the attacker and defender.
     
     Arguments:
@@ -90,14 +90,14 @@ def plot_results(attacker_losses, defender_losses):
         defender_losses (int): the number of defender losses. Value is created by simulate_battle(). '''
 
     # Print a statement of the loser of the battle. 
-    if attacker_losses > defender_losses:
-        print(f'The attacker lost the battle.\n Attackers Losses: {attacker_losses}\n Defenders Losses: {defender_losses}')
+    if total_attacker_losses > total_defender_losses:
+        print(f'The attacker lost the battle.\n Attackers Losses: {total_attacker_losses}\n Defenders Losses: {total_defender_losses}')
     else:
-        print(f'The defender lost the battle.\n Attackers Losses: {attacker_losses}\n Defenders Losses: {defender_losses}')
+        print(f'The defender lost the battle.\n Attackers Losses: {total_attacker_losses}\n Defenders Losses: {total_defender_losses}')
 
     # Create a numpy array of attacker losses and defender losses.
     x = np.array(['Attacker Losses', 'Defender Losses'])
-    y = np.array([attacker_losses, defender_losses])
+    y = np.array([total_attacker_losses, total_defender_losses])
     
     # Plot the results
     plt.bar(x, y)
@@ -169,8 +169,8 @@ def army_simulate_battle(num_rounds):
     attacker_army_size, defender_army_size = army_size()
 
     # Count to keep track of the overall losses for the attacker and defender
-    attacker_losses = 0
-    defender_losses = 0
+    total_attacker_losses = 0
+    total_defender_losses = 0
 
     round_scores = []
 
@@ -186,8 +186,8 @@ def army_simulate_battle(num_rounds):
         round_attacker_losses, round_defender_losses, attacker_army_size, defender_army_size = army_calculate_losses(attacker_dice, defender_dice, attacker_army_size, defender_army_size)
 
         # Add the round losses to their respective overall losses count.
-        attacker_losses += round_attacker_losses
-        defender_losses += round_defender_losses
+        total_attacker_losses += round_attacker_losses
+        total_defender_losses += round_defender_losses
         
     	# Append the results to the round_scores list.
         round_scores.append({
@@ -202,7 +202,7 @@ def army_simulate_battle(num_rounds):
         if attacker_army_size == 0 or defender_army_size == 0:
             break
 
-    return attacker_dice, defender_dice, attacker_losses, defender_losses, round_scores, attacker_army_size, defender_army_size
+    return attacker_dice, defender_dice, total_attacker_losses, total_defender_losses, round_scores, attacker_army_size, defender_army_size
 
 
 def plot_army(round_scores):
