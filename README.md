@@ -1,5 +1,7 @@
 # Programming for Data Analytics 
 
+![Banner](PFDA-assignments/img/Programming for Data Analytics.png)
+
 Author: Irene Kilgannon
 
 Student ID: G00220627
