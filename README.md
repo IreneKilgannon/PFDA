@@ -1,6 +1,6 @@
 # Programming for Data Analytics 
 
-![Banner](/workspaces/PFDA/PFDA-assignments/img/Programming for Data Analytics.png)
+![Banner](readme_banner.png)
 
 Author: Irene Kilgannon
 
