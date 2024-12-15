@@ -5,10 +5,13 @@ import pandas as pd
 import seaborn as sns
 
 def roll_dice(num_dice):
-    '''A function to simulate the rolling of any number of dice and create a list of the results of the dice rolls sorted in descending order.
+    '''A function to simulate the rolling of any number of dice and returns a list of the dice rolls, sorted in descending order.
 
-    Arguments: 
-        num_dice (int): the number of dice to roll.'''
+    Parameters: 
+        num_dice (int): the number of dice to roll.
+        
+    Returns:
+        A sorted list of the dice rolls.'''
     
     # Simulate the dice rolls
     roll_results = [random.randint(1, 6) for _ in range(num_dice)]
@@ -18,22 +21,26 @@ def roll_dice(num_dice):
 
 
 def calculate_losses(attacker_dice, defender_dice):
-    '''A function to compare the dice values of the attacker and the defender for each round. To keep track of the round losses the values are added to a list.
+    '''A function to compare the dice values of the attacker and the defender for each round. 
+    To keep track of the round losses the values are added to a list.
 
-    Arguments: 
-        attacker_dice: A list of 3 values created by roll_dice function
-        defender_dice: A list of 2 values created by the roll_dice function
-    '''
+    Parameters: 
+        attacker_dice: A list of 3 integers created by roll_dice function.
+        defender_dice: A list of 2 integers created by the roll_dice function.
+
+    Returns:
+        round_attacker_losses (int): The attacker losses for the round.
+        round_defender_losses (int): The defender losses for the round.'''
 
     # Counter to keep track of the losses in a round
     round_attacker_losses = 0
     round_defender_losses = 0
 
     # Zip the attacker dice and defender lists
-    for a, d in zip(attacker_dice, defender_dice):
+    for attacker_value, defender_value in zip(attacker_dice, defender_dice):
         # Compare the values of the dice rolls
         # a = value in attacker list, d = value in defender list
-        if  a <= d:
+        if  attacker_value <= defender_value:
             round_attacker_losses += 1
         else:
             round_defender_losses += 1
@@ -44,8 +51,14 @@ def calculate_losses(attacker_dice, defender_dice):
 def simulate_battle(num_rounds):
     '''Simulate the a battle
 
-    Argument: 
-        num_rounds (int): The number of battle rounds to simulate.'''
+    Parameters: 
+        num_rounds (int): The number of battle rounds to simulate.
+        
+    Returns:
+        attacker_dice, defender_dice: the rolls for the attacker and defender dice.
+        total_attacker_losses, total_defender_losses: the total losses of the attacker and defender.
+        round_scores (list): a list of dictionaries with the dice values and scores for each round for the attacker and defender.
+    '''
 
     # Lists to keep track of the overall losses.
     total_attacker_losses = 0
@@ -54,7 +67,7 @@ def simulate_battle(num_rounds):
     # A list of a dictionary to keep track of the round number, dice rolls and the score for each round.
     round_scores = []
 
-    # Play 1000 rounds of the game
+    # Simulate the game
     for round in range(1, num_rounds + 1):
 
         # Roll the attacker dice
@@ -66,7 +79,6 @@ def simulate_battle(num_rounds):
         # Use calculate_losses function.
         round_attacker_losses, round_defender_losses = calculate_losses(attacker_dice, defender_dice)
 
-        # Add the values of the round attacker losses to attacker loses.
         # To keep track of the overall losses
         total_attacker_losses += round_attacker_losses
         total_defender_losses += round_defender_losses
@@ -87,7 +99,11 @@ def plot_results(total_attacker_losses, total_defender_losses):
     
     Arguments:
         attacker_losses (int): the number of attacker losses. Value is created by simulate_battle().
-        defender_losses (int): the number of defender losses. Value is created by simulate_battle(). '''
+        defender_losses (int): the number of defender losses. Value is created by simulate_battle(). 
+        
+    Returns:
+        Prints a statement of the loser of the battle along with the total losses for the attacker and defender.
+        Creates a bar plot of the result.'''
 
     # Print a statement of the loser of the battle. 
     if total_attacker_losses > total_defender_losses:
@@ -102,27 +118,34 @@ def plot_results(total_attacker_losses, total_defender_losses):
     # Plot the results
     plt.bar(x, y)
 
-    # Label the axis
+    # Label the plot
     plt.title('Risk Game\nCount of Attacker and Defender Losses')
     plt.ylabel('Count')
-    
+
     plt.show()
 
 
 def score_frequency(round_scores):
-    '''A function to create a bar plot of the score frequency.
+    '''Create a bar plot of the score frequency.
     
-    Arguments:
-        round_scores (df): The round scores dataframe.'''
+        Parameters:
+            round_scores (df): The round scores dataframe.
+
+        Returns:
+            bar plot of the frequency of scores for the attacker losses'''
     
     print(round_scores['round_attacker_losses'].value_counts())
 
-    
+    # Create an array of the possible round scores as x-axis
     x = np.array(['Attacker 0\nDefender 2', 'Attacker 1\nDefender 1', 'Attacker 2\nDefender 0'])
+
+    # Count and sort the round_attacker_losses scores
     y = round_scores['round_attacker_losses'].value_counts().sort_index()
 
+    # Create bar plot
     plt.bar(x, y)
 
+    # Label the title and axis
     plt.title('Frequency of Scores')
     plt.ylabel('Count')
     plt.show()
@@ -131,6 +154,13 @@ def score_frequency(round_scores):
 ##### Functions for the game that include army size ########
 
 def army_size():
+    '''Create the size of the attacker army using the random module. The army size will be a random integer between 1 and 1000.
+    The defender army size will be equal to the attacker army.
+    
+    Returns:
+        attacker_army_size (int): The size of the attacker army.
+        defender_army_size (int): The size of the defender army.
+        Prints a statement to state the size of the attacker and defender armies at the start of the game. '''
 
     # Generate the size of army
     attacker_army_size = random.randint(1, 1000)
@@ -145,13 +175,27 @@ def army_size():
 
 
 def army_calculate_losses(attacker_dice, defender_dice, attacker_army_size, defender_army_size):
+    '''A function to compare the dice values of the attacker and the defender for each round. 
+    The loser is added to counter, round_attacker_losses or round_defender_losses to track the losses for each round. 
+    The army size of the loser is reduced by 1. 
+
+    Arguments: 
+        attacker_dice: A list of 3 values created by roll_dice function
+        defender_dice: A list of 2 values created by the roll_dice function
+        
+    Returns:
+        round_attacker_losses
+        round_defender_losses
+        attacker_army_size
+        defender_army_size'''
     
+    # Counter for the losses in each round
     round_attacker_losses = 0
     round_defender_losses = 0
 
     # Calculate the losses.
-    for a, d in zip(attacker_dice, defender_dice):
-        if  a <= d:
+    for attacker_value, defender_value in zip(attacker_dice, defender_dice):
+        if  attacker_value <= defender_value:
             round_attacker_losses += 1
             attacker_army_size -= 1
         else:
@@ -165,10 +209,21 @@ def army_calculate_losses(attacker_dice, defender_dice, attacker_army_size, defe
 
 
 def army_simulate_battle(num_rounds):
+    '''Simulate the a battle
 
+        Argument: 
+            num_rounds (int): The number of battle rounds to simulate.
+            
+        Returns:
+            attacker_dice, defender_dice: the rolls for the attacker and defender dice.
+            total_attacker_losses, total_defender_losses: the total losses of the attacker and defender.
+            round_scores (list): a list of dictionaries with the dice values and scores for each round for the attacker and defender.
+            attacker_army_size, defender_army_size (int): size of the army at the end of each round.'''
+    
+    # Generate the attacker and defender armies.
     attacker_army_size, defender_army_size = army_size()
 
-    # Count to keep track of the overall losses for the attacker and defender
+    # Counter to keep track of the overall losses for the attacker and defender
     total_attacker_losses = 0
     total_defender_losses = 0
 
@@ -206,6 +261,15 @@ def army_simulate_battle(num_rounds):
 
 
 def plot_army(round_scores):
+    '''Prints a statement on the number of rounds that it took for one of the armies to be reduced to zero.
+    Plots the size of the armies for each round.
+    
+    Parameters:
+        round_scores (dataframe)
+        
+    Returns:
+        Line plot of the army size.'''
+
     print(f'It took {len(round_scores)} rounds to complete the game.')
     plt.plot(round_scores.index, round_scores['attacker_army_size'], color = 'r')
     plt.plot(round_scores.index, round_scores['defender_army_size'], color = 'b')
