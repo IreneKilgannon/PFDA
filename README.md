@@ -1,6 +1,6 @@
-# Programming for Data Analytics 
+![Banner](PFDA-assignments/img/readme_banner.png)
 
-![Banner](readme_banner.png)
+# Programming for Data Analytics 
 
 Author: Irene Kilgannon
 
@@ -88,9 +88,6 @@ When you are finished working in the codespaces, it is important to disconnect t
 
 [Quickstart for GitHub codespaces](https://docs.github.com/en/codespaces/getting-started/quickstart)
 
-## Dependencies
-
-Currently there are no special packages or libraries required. Any dependencies will be added to ``requirements.txt`` that is found in the root of the repository.
 
 ## Get Help
 
