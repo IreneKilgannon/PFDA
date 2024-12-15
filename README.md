@@ -6,7 +6,7 @@ Author: Irene Kilgannon
 
 Student ID: G00220627
 
-This is my repository for the module, Programming for Data Analytics for a [Higher Diploma in Science in Computing in Data Analytics](https://www.gmit.ie/higher-diploma-in-science-in-computing-in-data-analytics) at [Atlantic Technological University](https://www.atu.ie/).
+This is my repository for the semester two module, Programming for Data Analytics for a [Higher Diploma in Science in Computing in Data Analytics](https://www.gmit.ie/higher-diploma-in-science-in-computing-in-data-analytics) at [Atlantic Technological University](https://www.atu.ie/).
 
 The repository contains three directories:
 
@@ -28,7 +28,7 @@ These assignments were:
     - Create a repository for the module, [my repository](https://github.com/IreneKilgannon/PFDA).
 
 - assignment2-weather.ipynb
-    - Using the csv file in the assignment folder of the [PFDA-courseware repository]((https://github.com/andrewbeattycourseware/PFDA-courseware)) create a nice plot of the temperature over time.
+    - Using the csv file in the [assignment folder](https://github.com/andrewbeattycourseware/PFDA-courseware/blob/main/assignment/weatherreadings1.csv) of the [PFDA-courseware repository](https://github.com/andrewbeattycourseware/PFDA-courseware) create a nice plot of the temperature over time.
     - Use the 'dryBulbTemperature_Celsius' column.
 
 - assignment03-pie.ipynb
@@ -44,7 +44,7 @@ These assignments were:
             * The temperature
             * The mean temperature each day
             * The mean temperature for each month
-            * The Wind speed
+            * The wind speed
             * The rolling wind speed (say over 24 hours)
             * The max wind speed for each day
             * The monthly mean of the daily max wind speeds
