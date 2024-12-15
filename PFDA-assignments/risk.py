@@ -296,8 +296,15 @@ def plot_army(round_scores):
     # Display the plot
     plt.show()
 
-#if __name__ = '__main__':
+if __name__ == "__main__":
+    attacker_dice, defender_dice, total_attacker_losses, total_defender_losses, round_scores = simulate_battle(1000)
+    plot_results(total_attacker_losses, total_defender_losses)
+    round_scores = pd.DataFrame(round_scores).set_index('round')
+    score_frequency(round_scores)
+
 
 # References
+
 # Docstrings, args or parameters? https://www.reddit.com/r/learnpython/comments/xwazx4/is_this_docstring_correct_should_args_or/
+# What Does if __name__ == "__main__" Do in Python? https://realpython.com/if-name-main-python
 
