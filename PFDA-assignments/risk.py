@@ -116,6 +116,9 @@ def plot_results(total_attacker_losses, total_defender_losses):
     x = np.array(['Attacker Losses', 'Defender Losses'])
     y = np.array([total_attacker_losses, total_defender_losses])
     
+    # Set the size of the plot
+    plt.figure(figsize=(5,5))
+
     # Plot the results
     plt.bar(x, y)
 
@@ -143,6 +146,9 @@ def score_frequency(round_scores):
 
     # Count and sort the round_attacker_losses scores
     y = round_scores['round_attacker_losses'].value_counts().sort_index()
+
+    # Set the size of the plot
+    plt.figure(figsize=(5,5))
 
     # Create bar plot
     plt.bar(x, y)
