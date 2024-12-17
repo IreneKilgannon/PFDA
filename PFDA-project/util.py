@@ -1,4 +1,12 @@
 def skip_rows(csv_file):
+    '''Read in a csv file and find row number where the data starts.
+    
+    Parameters:
+        csv_file: csv_file to examine
+        
+    Returns:
+        data_start_idx (int): The number of rows to skip'''
+    
     # Read the file, skipping metadata rows
     with open(csv_file, 'r') as file:
         lines = file.readlines()
@@ -9,6 +17,7 @@ def skip_rows(csv_file):
             data_start_idx = i
     
     return data_start_idx
+
 
 def extract_location(file_name):
     '''A function to extract the location from the file name'''
