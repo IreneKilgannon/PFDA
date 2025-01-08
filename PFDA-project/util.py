@@ -78,3 +78,45 @@ def merge_files(file_path, names, usecols, filename):
 merge_files('data/electricity_actual/*.csv', ['date', 'actual', 'location', 'Actual (MW)'], ['date', 'Actual (MW)'], 'actual')
 
 merge_files('data/electricity_demand/*.csv', ['date', 'actual', 'location', 'Demand (MW)'], ['date', 'Demand (MW)'], 'demand')
+
+def resample(df, term):
+
+    if term == 'ME':
+        df_monthly = df.resample(term).mean()
+        return df_monthly
+    else:
+        df_yearly = df.resample(term).mean()
+        return df_yearly
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
