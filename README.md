@@ -51,7 +51,26 @@ These assignments were:
 
 ## PFDA-project
 
-The project directory has a large project which analyses the wind speed around the country with a view to a windfarm. Submission date 13th Jan 2025.
+The project aims:
+
+* Analyse wind energy production in the Republic of Ireland. 
+* Examine the influence the weather has on wind energy production.
+* Create a machine learning model that can predict the wind energy output based on weather data.
+* Create a simple forecasting model to predict the wind energy.
+
+PFDA-project contains the following Jupyter notebooks and directories:
+
+|Name|Contents|
+|---|---|
+|data |.csv files for weather and electricity|
+|img|.png image files||
+|plots|plots|
+|wind_energy_analysis.ipynb|The project notebook analysing wind energy and weather. |
+|weather_trends.ipynb|Analysis of long term weather trends focussing on wind speeds.|
+|clean_weather.ipynb|Cleaning and merging of weather data for analysis. |
+|clean_wind_electricity.ipynb|Cleaning and merging of wind energy data for analysis. |
+|util.py|Module with Python functions|
+
 
 ## Installation
 
