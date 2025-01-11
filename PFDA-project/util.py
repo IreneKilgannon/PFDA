@@ -73,36 +73,5 @@ def resample_df(df, term):
     else:
         df_yearly = df.resample(term).mean()
         return df_yearly
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
 
