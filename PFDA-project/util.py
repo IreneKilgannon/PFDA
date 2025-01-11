@@ -1,86 +1,58 @@
-#def skip_rows(csv_file):
-#    '''Read in a csv file and find row number where the data starts.
-#    
-#    Parameters:
-#        csv_file: csv_file to examine
-#        
-#    Returns:
-#        data_start_idx (int): The number of rows to skip'''
-#    
-#    # Read the file, skipping metadata rows
-#    with open(csv_file, 'r') as file:
-#        lines = file.readlines()
-#    
-#    # Identify the start of the data (row where actual CSV content begins)
-#    for i, line in enumerate(lines):
-#        if line.lower().startswith('date,'):
-#            data_start_idx = i
-#    
-#    return data_start_idx
-#
-#
-#def extract_location(file_name):
-#    '''A function to extract the location from the file name'''
-#
-#    pattern = r'hly\d{3,4}([A-Z][a-z]+[A-Z]?[a-z]+).csv'
-#
-#    match = re.findall(pattern, file_name)
-#
-#    if match:
-#        return match[0].lower()
-#    else:
-#        raise ValueError('File name does not match the expected pattern')
-#    
-#
-#def select_years(df):
-#    df = df['2014': '2024']
-#    return df
-#
-#def find_files():
-#
-#    csv_files = glob.glob('data/electricity/*.csv')
-#
-#    return csv_files
-
 import pandas as pd
 import glob as glob
 
-def merge_files(file_path, names, usecols, filename):
+def merge_files(file_path, names, usecols, file_name):
+    ''' A function to read multiple files matching a glob expression into a single Pandas DataFrame. 
+    It processes the data by performing several transformations and outputs the result as a CSV file.
 
+    Arguments:
+        file_path: A file path with glob expressions to specify the files to read.
+
+        names: A list of column names for the DataFrame. 
+
+        usecols: The columns to include in the DataFrame.
+
+        file_name: The name of the output CSV file.
+    
+    Returns: A CSV file of the merged and processed data, stored in the data directory
+    '''
+
+    # Use glob to find csv files in a specified path.
     csv_files = glob.glob(file_path)
     
+    # Instantiate an empty dataframe
     merge_df = pd.DataFrame()
 
-# Loop through each CSV file found by glob and append contents to merge_df
+    # Loop through each CSV file and append contents to merge_df
     for csv_file in csv_files:
         df = pd.read_csv(csv_file, 
                      header = None, 
-                     names = names, 
+                     names = names,
                      index_col= 'date',
                      parse_dates= ['date'],
                      usecols= usecols)
     
-    # Concatenate df to electricity_df
+        # Concatenate df to electricity_df
         merge_df = pd.concat([merge_df, df])
 
-    # Sort electricity_df by index
+        # Sort electricity_df by index
         merge_df.sort_index(inplace= True)
 
+        # Replace missing values by interpolation
         merge_df.interpolate(method= 'linear', inplace= True)
 
+        # Remove duplicate rows.
         merge_df = merge_df[~merge_df.index.duplicated(keep= 'first')]
 
+        # Resample the data to hourly
         merge_df = merge_df.resample('h').mean()
 
-    # Write to csv file
-    return merge_df.to_csv(f'data/hourly_{filename}.csv')
+    # Write to csv file to the data directory
+    return merge_df.to_csv(f'data/{file_name}.csv')
 
-merge_files('data/electricity_actual/*.csv', ['date', 'actual', 'location', 'Actual (MW)'], ['date', 'Actual (MW)'], 'actual')
 
-merge_files('data/electricity_demand/*.csv', ['date', 'actual', 'location', 'Demand (MW)'], ['date', 'Demand (MW)'], 'demand')
-
-def resample(df, term):
-
+def resample_df(df, term):
+    
     if term == 'ME':
         df_monthly = df.resample(term).mean()
         return df_monthly
