@@ -14,7 +14,8 @@ def merge_files(file_path, names, usecols, file_name):
 
         file_name: The name of the output CSV file.
     
-    Returns: A CSV file of the merged and processed data, stored in the data directory
+    Returns: 
+        A CSV file of the merged and processed data, stored in the data directory
     '''
 
     # Use glob to find csv files in a specified path.
@@ -52,10 +53,23 @@ def merge_files(file_path, names, usecols, file_name):
 
 
 def resample_df(df, term):
+    '''Resample a DataFrame to calculate the mean values by either weekly, monthly or yearly time intervals.
     
+    Arguments:
+        df: A DataFrame to be resampled.
+        term: The resampling frequency, specified as weekly, monthly or yearly.
+    
+    Returns: 
+        A resampled DataFrame based on the specified term.'''
+
     if term == 'ME':
         df_monthly = df.resample(term).mean()
         return df_monthly
+    
+    elif term == 'W':
+        df_weekly = df.resample(term).mean()
+        return df_weekly
+    
     else:
         df_yearly = df.resample(term).mean()
         return df_yearly
