@@ -52,26 +52,3 @@ def merge_files(file_path, names, usecols, file_name):
     return merge_df.to_csv(f'data/{file_name}.csv')
 
 
-def resample_df(df, term):
-    '''Resample a DataFrame to calculate the mean values by either weekly, monthly or yearly time intervals.
-    
-    Arguments:
-        df: A DataFrame to be resampled.
-        term: The resampling frequency, specified as weekly, monthly or yearly.
-    
-    Returns: 
-        A resampled DataFrame based on the specified term.'''
-
-    if term == 'ME':
-        df_monthly = df.resample(term).mean()
-        return df_monthly
-    
-    elif term == 'W':
-        df_weekly = df.resample(term).mean()
-        return df_weekly
-    
-    else:
-        df_yearly = df.resample(term).mean()
-        return df_yearly
-    
-
