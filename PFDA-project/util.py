@@ -46,7 +46,7 @@ def merge_files(file_path, names, usecols, file_name):
         merge_df = merge_df[~merge_df.index.duplicated(keep= 'first')]
 
         # Resample the data to hourly
-        merge_df = merge_df.resample('h').mean()
+        merge_df = merge_df.resample('h').sum()
 
     # Write to csv file to the data directory
     return merge_df.to_csv(f'data/{file_name}.csv')
